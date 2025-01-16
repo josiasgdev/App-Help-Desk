@@ -55,6 +55,16 @@
 
               <?php } ?>
 
+
+              <?php
+              if (isset($_GET['login']) && $_GET['login'] == 'erro2') { ?>
+              
+              <div class="text-danger">
+                É necessário realizar o login para acessar esta página.
+              </div>
+
+              <?php } ?>
+
               <!-- O submit do dispara as informações para a action -->
               <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
             </form>

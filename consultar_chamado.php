@@ -1,3 +1,12 @@
+<?php 
+  session_start();
+
+  if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM') {
+    //Força o redirecionamento de onde estiver para a página mencionada
+    header('Location: index.php?login=erro2');
+  }
+?>
+
 <html>
   <head>
     <meta charset="utf-8" />

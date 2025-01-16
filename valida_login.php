@@ -28,6 +28,11 @@
     echo $_POST['senha'];
     */
 
+    //Instrução de inicialização de sessão
+    session_start();
+
+
+
     //Variável que verifica se a autenticação foi realizada
     $usuario_autenticado = false;
 
@@ -45,11 +50,6 @@
     */
 
     foreach($usuarios_app as $user){
-        /*
-        echo 'Usuário app: ' . $user['email'] . ' / ' . $user['senha'];
-        echo '<br>';
-        echo 'Usuário form: ' . $_POST['email'] . ' / ' . $_POST['senha'];
-        */
         
         if($user['email'] == $_POST['email'] && $user['senha'] == $_POST['senha']){
             $usuario_autenticado = true;
@@ -60,7 +60,11 @@
 
     if($usuario_autenticado){
         echo 'Usuário autenticado';
+        /*Criar um índice na variável de sessão para decidir
+        se decidir se os demais scripts devem ser exibidos ou não */
+        $_SESSION['autenticado'] = 'SIM';
     } else {
+        $_SESSION['autenticado'] = 'NÃO';
         //Força o redirecionamento de onde estiver para a página mencionada
         header('Location: index.php?login=erro');
     }
