@@ -1,11 +1,8 @@
-<?php 
-  session_start();
 
-  if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM') {
-    //Força o redirecionamento de onde estiver para a página mencionada
-    header('Location: index.php?login=erro2');
-  }
-?>
+<?php
+/*Por se tratar de uma validação e acesso, o require é utilizado por um causar um Fatal Error e 
+parar o script impedindo o acesso em caso de erro ou inconsistência no processo de login*/
+require_once "validador_acesso.php"; ?>
 
 <html>
   <head>
