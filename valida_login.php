@@ -63,6 +63,7 @@
         /*Criar um índice na variável de sessão para decidir
         se decidir se os demais scripts devem ser exibidos ou não */
         $_SESSION['autenticado'] = 'SIM';
+        header('Location: home.php');
     } else {
         $_SESSION['autenticado'] = 'NÃO';
         //Força o redirecionamento de onde estiver para a página mencionada
