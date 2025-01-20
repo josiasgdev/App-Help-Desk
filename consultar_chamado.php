@@ -4,7 +4,6 @@
 //Armazenamento dos chamados
 $chamados = array();
 
-
 //abrir o arquivo.hd
 $arquivo = fopen("arquivo.hd", "r");
 
@@ -60,13 +59,24 @@ fclose($arquivo);
           </div>
 
           <div class="card-body">
-
+        
           <?php foreach($chamados as $chamado) { ?>
-
+            
             <?php
+            /*Lógica para criação dos elementos da view onde cada chamado criado será exibido, o laço percorre cada chamado recebido, cria os elementos e os preenche com os dados dos chamados.*/
               $chamado_dados = explode('#', $chamado);
+              
+              //Verificando se o identificador é de usuário
+              if($_SESSION['perfil_id'] == 2){
+                //Verifica, através do ID se o usuário logado é o mesmo usuário que abriu o chamado.
+                if($_SESSION['id'] != $chamado_dados[0]){
+                  //Caso entre neste laço, com o comando continue, a execução sai do bloco de código e nada mais é executado.
+                  continue;
+                }
+              }
+
               //Contagem da quantidade de elementos do array chamado_dados. Se for inferior a 3, é sinal de que falta algum item e a instrução é pulada
-              if(count($chamado_dados) < 4) {
+              if(count($chamado_dados) < 3) {
                 continue;
               }
             ?>

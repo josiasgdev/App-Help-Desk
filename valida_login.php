@@ -36,16 +36,19 @@
     //Variável que verifica se a autenticação foi realizada
     $usuario_autenticado = false;
     $usario_id = null;
+    $usuario_perfil_id = null;
+
+    $perfis = array(1=> 'Administrador', 2 => 'Usuário');
 
 
     //Usuários do sistema
 
     //Criar uma relação(estática) de usuários da aplicação de forma manual
     $usuarios_app = array(
-        array('id' => 1,'email' => 'adm@teste.com.br', 'senha' => '1234'),
-        array('id' => 2,'email' => 'user@teste.com.br', 'senha' => '1234'),
-        array('id' => 3,'email' => 'jose@teste.com.br', 'senha' => '1234'),
-        array( 'id' => 4,'email' => 'maria@teste.com.br', 'senha' => '1234')
+        array('id' => 1,'email' => 'adm@teste.com.br', 'senha' => '1234', 'perfil_id' => 1),
+        array('id' => 2,'email' => 'user@teste.com.br', 'senha' => '1234', 'perfil_id' => 1),
+        array('id' => 3,'email' => 'jose@teste.com.br', 'senha' => '1234', 'perfil_id' => 2),
+        array( 'id' => 4,'email' => 'maria@teste.com.br', 'senha' => '1234', 'perfil_id' => 2)
     );
 
     /*Percorrer o array de arrays com os usuários, 
@@ -57,6 +60,7 @@
         if($user['email'] == $_POST['email'] && $user['senha'] == $_POST['senha']){
             $usuario_autenticado = true;
             $usuario_id = $user['id'];
+            $usuario_perfil_id = $user['perfil_id'];
         }
 
         echo '<hr>';
@@ -67,7 +71,10 @@
         /*Criar um índice na variável de sessão para decidir
         se decidir se os demais scripts devem ser exibidos ou não */
         $_SESSION['autenticado'] = 'SIM';
+        /*Lança o id do usuário na sessão global para identificação do registro */
         $_SESSION['id'] = $usuario_id;
+        /*Lança a verificação da função do usuário*/
+        $_SESSION['perfil_id'] = $usuario_perfil_id;
         header('Location: home.php');
     } else {
         $_SESSION['autenticado'] = 'NÃO';
