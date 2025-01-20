@@ -1,6 +1,5 @@
 <?php
-echo '<pre>';
-print_r($_POST);
+session_start();
 
 /*
 O post é um array, o array recebido será formatado em um texto
@@ -9,7 +8,7 @@ para que possa ser escrito dentro do arquivo.
 Os dados de cada campo do formulário recebidos através do método post serão separados
 pelo caractere '#', e, serão alocados na variável registro como string, através do método implode.
 */
-$registro = implode('#', $_POST);
+$registro = $_SESSION['id'] . '#' . implode('#', $_POST);
 str_replace('#', '-', $registro);
 
 /*Função nativa para abrir um novo arquivo. Caso o arquivo não exista, ele será criado

@@ -66,7 +66,7 @@ fclose($arquivo);
             <?php
               $chamado_dados = explode('#', $chamado);
               //Contagem da quantidade de elementos do array chamado_dados. Se for inferior a 3, é sinal de que falta algum item e a instrução é pulada
-              if(count($chamado_dados) < 3) {
+              if(count($chamado_dados) < 4) {
                 continue;
               }
             ?>

@@ -35,14 +35,17 @@
 
     //Variável que verifica se a autenticação foi realizada
     $usuario_autenticado = false;
+    $usario_id = null;
 
 
     //Usuários do sistema
 
     //Criar uma relação(estática) de usuários da aplicação de forma manual
     $usuarios_app = array(
-        array('email' => 'adm@teste.com.br', 'senha' => '123456'),
-        array('email' => 'user@tese.com.br', 'senha' => 'abcd')
+        array('id' => 1,'email' => 'adm@teste.com.br', 'senha' => '1234'),
+        array('id' => 2,'email' => 'user@teste.com.br', 'senha' => '1234'),
+        array('id' => 3,'email' => 'jose@teste.com.br', 'senha' => '1234'),
+        array( 'id' => 4,'email' => 'maria@teste.com.br', 'senha' => '1234')
     );
 
     /*Percorrer o array de arrays com os usuários, 
@@ -53,6 +56,7 @@
         
         if($user['email'] == $_POST['email'] && $user['senha'] == $_POST['senha']){
             $usuario_autenticado = true;
+            $usuario_id = $user['id'];
         }
 
         echo '<hr>';
@@ -63,6 +67,7 @@
         /*Criar um índice na variável de sessão para decidir
         se decidir se os demais scripts devem ser exibidos ou não */
         $_SESSION['autenticado'] = 'SIM';
+        $_SESSION['id'] = $usuario_id;
         header('Location: home.php');
     } else {
         $_SESSION['autenticado'] = 'NÃO';
